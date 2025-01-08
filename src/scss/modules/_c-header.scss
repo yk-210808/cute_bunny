@@ -1,0 +1,14 @@
+@use '../mixin/mixin' as *;
+
+/* --------------------------------
+c-header
+----------------------------------- */
+.c-header {
+  height: 140px;
+  background-color: tomato;
+  font-weight: bold;
+  @include sp {
+    height: vw(100,375);
+    background-color: lightgreen;
+  }
+}

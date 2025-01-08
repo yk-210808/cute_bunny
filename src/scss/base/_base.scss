@@ -1,0 +1,276 @@
+@use '../mixin/mixin' as *;
+@use '../setting/setting' as *;
+
+/*------------------------------------------------------------------------------
+  reset
+------------------------------------------------------------------------------*/
+html,
+input,
+textarea,
+select,
+button {
+  font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", "メイリオ", Meiryo, sans-serif;
+  font-weight: 400;
+}
+
+html {
+  color: #000;
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+  @include sp {
+    font-size: 14px;
+  }
+}
+
+body {
+  background: #fff;
+  margin: 0;
+  @include sp {
+    position: relative;
+    -webkit-appearance: none;
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  border: 0;
+  margin: 0;
+  vertical-align: top;
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  &[href^="tel:"] {
+    @include pc {
+      pointer-events: none;
+    }
+  }
+}
+
+input,
+select,
+textarea,
+button {
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  appearance: none;
+}
+
+input,
+select,
+textarea {
+  @include sp {
+    font-size: 16px !important;
+  }
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+@include placeholder(#ccc);
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: block;
+}
+
+#wrapper {
+  position: relative;
+}
+
+#wrapper,
+.outer-block {
+  min-width: 1080px;
+  @include sp {
+    min-width: 320px;
+  }
+}
+
+.inner-block {
+  margin: 0 auto;
+  position: relative;
+  @include pc {
+    padding: 0 30px;
+    width: 1040px;
+  }
+  @include sp {
+    padding: 0 20px;
+  }
+}
+
+dl,dt,dd {
+  padding: 0;
+  margin: 0;
+}
+
+a,
+a::before,
+a::after,
+button,
+button::before,
+button::after {
+  @include pc {
+    transition: $transition01;
+  }
+}
+
+.ib {
+  display: inline-block;
+}
+
+.pc {
+  @include sp {
+    display: none !important;
+  }
+}
+
+.sp {
+  @include pc {
+    display: none !important;
+  }
+}
+
+//独自font-family読み込み
+//@font-face {
+//  src: url(../font/NotoSansJP-Medium.woff) format("woff"),
+//    url(../font/NotoSansJP-Medium.otf) format("opentype");
+//  font-family: "Noto Sans JP";
+//  font-weight: 500;
+//  font-display: swap;
+//}
+//@font-face {
+//  src: url(../font/NotoSansJP-Bold.woff) format("woff"),
+//    url(../font/NotoSansJP-Bold.otf) format("opentype");
+//  font-family: "Noto Sans JP";
+//  font-weight: 700;
+//  font-display: swap;
+//}
+//@font-face {
+//  src: url(../font/NotoSerifJP-Medium.woff) format("woff"),
+//    url(../font/NotoSerifJP-Medium.otf) format("opentype");
+//  font-family: "Noto Serif JP";
+//  font-weight: 500;
+//  font-display: swap;
+//}
+//@font-face {
+//  src: url(../font/NotoSerifJP-Bold.woff) format("woff"),
+//    url(../font/NotoSerifJP-Bold.otf) format("opentype");
+//  font-family: "Noto Serif JP";
+//  font-weight: 700;
+//  font-display: swap;
+//}
+
+//.serif {
+//  font-family: "Noto Serif JP", serif;
+//}
+
+
+//SVGスプライトリセットCSS
+.c-svg {
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: top;
+}
+
+.webgl{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.grabbing {
+  cursor: grab;
+}
+
+.nav {
+  position: absolute;
+  top: calc(100vh - 70px - 20px);
+  right: 0;
+  left: 0;
+  margin: auto;
+  background-color: #fff;
+  width: 250px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include sp {
+    width: 200px;
+    height: 60px;
+    top: calc(100vh - 60px - 20px);
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .txt {
+    font-weight: bold;
+    margin-left: 15px;
+  }
+}

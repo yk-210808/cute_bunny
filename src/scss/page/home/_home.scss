@@ -1,0 +1,28 @@
+/* -----------------------------------------------
+* home Module
+* homeページ用
+-------------------------------------------------- */
+@use '../../mixin/mixin' as *;
+
+.home {
+  background-color: green;
+  @include sp {
+    background-color: skyblue;
+  }
+
+  .btn {
+    background-color: #333;
+    color: #fff;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 100px;
+    @include pc {
+      &:hover {
+        color: #333;
+        background-color: #fff;
+      }
+    }
+  }
+}
