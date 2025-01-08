@@ -117,6 +117,9 @@ controls.maxPolarAngle = Math.PI - Math.PI / 4;
 controls.minAzimuthAngle = -Math.PI / 2;
 controls.maxAzimuthAngle = Math.PI / 2;
 
+if(isSmartPhone()){
+    controls.enabled = false
+}
 // let transformControl = new TransformControls(camera, canvas)
 // transformControl.addEventListener("dragging-changed", function (event) {
 //     controls.enabled = !event.value;
@@ -213,10 +216,13 @@ window.addEventListener('pointerdown', () => {
 window.addEventListener('pointerup', () => {
     if(grabbing) {
         canvas.classList.remove('grabbing')
-        controls.enabled = true;
         grabbing = false;
-
+        
         bunny.position.set(0, 0, 0)
+
+        if(!isSmartPhone()){
+            controls.enabled = true;
+        }
     }
 })
 
@@ -230,6 +236,13 @@ const currentScale = 0.9
 const targetScale = 1
 let scaled = false
 
+function isSmartPhone() {
+    if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 const tick = () => {
     const elapsedTime = clock.getElapsedTime()
@@ -248,7 +261,7 @@ const tick = () => {
             currentIntersect = intersects[0]
             canvas.classList.add('grabbing')
 
-            if(!scaled){
+            if(!scaled && !isSmartPhone()){
                 bunny.scale.set(targetScale, targetScale, targetScale)
                 scaled = true
             }
@@ -258,7 +271,7 @@ const tick = () => {
             if(!grabbing) {
                 canvas.classList.remove('grabbing')
 
-                if(scaled){
+                if(scaled && !isSmartPhone()){
                     bunny.scale.set(currentScale, currentScale, currentScale)
                     scaled = false
                 }
@@ -268,8 +281,9 @@ const tick = () => {
     }
 
     if(grabbing){
-        let x = (mouse.x * 4)
-        let y = (-mouse.y * 1.5)
+        const ratio = isSmartPhone() ? { x: 2, y: 0.9 } : { x: 4, y: 1.5 }
+        let x = (mouse.x * ratio.x)
+        let y = (-mouse.y * ratio.y)
 
         bunny.position.x = x
         bunny.position.z = y
